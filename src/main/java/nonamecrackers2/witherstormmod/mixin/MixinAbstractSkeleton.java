@@ -31,7 +31,7 @@ public abstract class MixinAbstractSkeleton extends Monster {
       locals = LocalCapture.CAPTURE_FAILHARD
    )
    public void performRangedAttackInvoke(LivingEntity entity, float f, CallbackInfo ci, ItemStack stack, AbstractArrow arrow) {
-      if (entity instanceof var storm) {
+      if (entity instanceof WitherStormEntity storm) {
          Pair<Boolean, Integer> pair = TractorBeamHelper.isInsideTractorBeam(this, storm, 4.0);
          if ((Boolean)pair.getFirst()) {
             Vec3 pos = storm.getHeadPos((Integer)pair.getSecond());

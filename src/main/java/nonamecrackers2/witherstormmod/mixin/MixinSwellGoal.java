@@ -63,7 +63,7 @@ public abstract class MixinSwellGoal {
    @Unique
    @Nullable
    private Vec3 getHeadPosOfTractorBeamCreeperIsIn(@Nullable LivingEntity target) {
-      if (target instanceof var storm) {
+      if (target instanceof WitherStormEntity storm) {
          Pair<Boolean, Integer> pair = TractorBeamHelper.isInsideTractorBeam(this.creeper, storm, 4.0);
          if ((Boolean)pair.getFirst()) {
             return storm.getHeadPos((Integer)pair.getSecond());

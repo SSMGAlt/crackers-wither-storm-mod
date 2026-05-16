@@ -2,15 +2,15 @@ name: Release Build
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*.*.*'
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
   release:
-    name: Release
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -34,19 +34,10 @@ jobs:
       - name: Build
         run: ./gradlew build --no-daemon
 
-      - name: Collect artifacts
-        id: collect
-        run: |
-          JAR=$(ls build/libs/*.jar | head -1)
-          echo "jar=$JAR" >> "$GITHUB_OUTPUT"
-          echo "jar_name=$(basename $JAR)" >> "$GITHUB_OUTPUT"
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.ref_name }}
-          tag_name: ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          files: ${{ steps.collect.outputs.jar }}
-          generate_release_notes: true
+          name: witherstormmod-release-${{ github.ref_name }}-${{ github.sha }}
+          path: build/libs/*.jar
+          if-no-files-found: error
+          retention-days: 90

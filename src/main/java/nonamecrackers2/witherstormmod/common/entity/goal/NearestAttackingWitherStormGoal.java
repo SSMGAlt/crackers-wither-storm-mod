@@ -19,7 +19,7 @@ public class NearestAttackingWitherStormGoal extends NearestAttackableTargetGoal
 
    protected void findTarget() {
       super.findTarget();
-      if (this.target instanceof var storm) {
+      if (this.target instanceof WitherStormEntity storm) {
          boolean flag = true;
          if (storm.getPhase() > 3
             && storm.distanceTo(this.mob) > 30.0

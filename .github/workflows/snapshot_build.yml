@@ -1,4 +1,4 @@
-name: Debug Build
+name: Snapshot Build
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
     tags-ignore:
       - '**'
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,10 +35,10 @@ jobs:
       - name: Build
         run: ./gradlew build --no-daemon
 
-      - name: Upload build artifact
+      - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
         with:
-          name: witherstormmod-debug-${{ github.sha }}
+          name: witherstormmod-snapshot-${{ github.sha }}
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 14

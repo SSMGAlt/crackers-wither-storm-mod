@@ -26,8 +26,8 @@ public class PlayerTractorBeamEffects {
       boolean flag = false;
       if (EntitySelector.NO_SPECTATORS.test(this.player)) {
          for (Entity entity : this.player.clientLevel.entitiesForRendering()) {
-            if (entity instanceof LivingEntity living && living instanceof var storm) {
-               var t = (T & WitherStormBase)storm;
+            if (entity instanceof LivingEntity living && living instanceof WitherStormBase storm) {
+               @SuppressWarnings("unchecked") T t = (T)storm;
                if ((Boolean)TractorBeamHelper.isInsideTractorBeam(this.player, t, 4.0).getFirst()) {
                   flag = true;
                   break;
