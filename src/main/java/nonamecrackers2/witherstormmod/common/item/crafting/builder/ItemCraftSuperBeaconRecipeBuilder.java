@@ -1,0 +1,62 @@
+package nonamecrackers2.witherstormmod.common.item.crafting.builder;
+
+import com.google.gson.JsonObject;
+import java.util.List;
+import java.util.function.Consumer;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
+import nonamecrackers2.witherstormmod.common.init.WitherStormModRecipeSerializers;
+import nonamecrackers2.witherstormmod.common.item.crafting.SuperBeaconRecipe;
+
+public class ItemCraftSuperBeaconRecipeBuilder extends SuperBeaconRecipeBuilder {
+   private final Item result;
+   private final int count;
+
+   public ItemCraftSuperBeaconRecipeBuilder(SuperBeaconRecipe.Condition condition, ItemLike result, int count) {
+      super(condition);
+      this.result = result.asItem();
+      this.count = count;
+   }
+
+   public Item getResult() {
+      return this.result;
+   }
+
+   public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
+      consumer.accept(
+         new ItemCraftSuperBeaconRecipeBuilder.Result(id, this.condition, this.result, this.count, this.group == null ? "" : this.group, this.ingredients)
+      );
+   }
+
+   public static class Result extends SuperBeaconRecipeBuilder.Result {
+      private final Item result;
+      private final int count;
+
+      public Result(ResourceLocation id, SuperBeaconRecipe.Condition condition, Item result, int count, String group, List<Ingredient> ingredients) {
+         super(id, condition, group, ingredients);
+         this.result = result;
+         this.count = count;
+      }
+
+      @Override
+      public void serializeRecipeData(JsonObject object) {
+         super.serializeRecipeData(object);
+         JsonObject result = new JsonObject();
+         result.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
+         if (this.count > 1) {
+            result.addProperty("count", this.count);
+         }
+
+         object.add("result", result);
+      }
+
+      public RecipeSerializer<?> getType() {
+         return (RecipeSerializer<?>)WitherStormModRecipeSerializers.ITEM_CRAFT_SUPER_BEACON.get();
+      }
+   }
+}
