@@ -24,7 +24,7 @@ public abstract class MixinPrimedTnt extends Entity {
 
    @ModifyVariable(method = "tick", at = @At("STORE"), ordinal = 0)
    public int tickModifyFuse(int i) {
-      if (!((PrimedTnt)this instanceof FormidibombEntity)) {
+      if (!((PrimedTnt)(Object)this instanceof FormidibombEntity)) {
          List<WitherStormEntity> storms = this.level().getEntitiesOfClass(WitherStormEntity.class, this.getBoundingBox().inflate(100.0, 200.0, 100.0));
          WitherStormEntity storm = WorldUtil.getNearest(storms, this.position(), Entity::position);
          if (storm != null) {

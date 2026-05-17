@@ -38,16 +38,16 @@ public abstract class MixinLivingEntity extends Entity implements LivingEntityAc
 
    @Inject(method = "<init>", at = @At("TAIL"))
    public void constructorTail(EntityType<? extends LivingEntity> type, Level level, CallbackInfo ci) {
-      BrainInjectionHelper.inject((LivingEntity)this);
+      BrainInjectionHelper.inject((LivingEntity)(Object)this);
    }
 
    @Inject(method = "dropAllDeathLoot", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;dropExperience()V"), cancellable = true)
    public void witherstormmod$preventDrops_dropAllDeathLoot(DamageSource source, CallbackInfo ci) {
       MutableBoolean flag = new MutableBoolean();
-      PhlegmGravestoneHelper.findPotentialPhlegmClusterPos((LivingEntity)this, source).ifPresent(pos -> {
+      PhlegmGravestoneHelper.findPotentialPhlegmClusterPos((LivingEntity)(Object)this, source).ifPresent(pos -> {
          List<ItemStack> items = this.captureDrops().stream().<ItemStack>map(ItemEntity::getItem).toList();
          if (!items.isEmpty()) {
-            PhlegmGravestoneHelper.spawnForEntity((LivingEntity)this, pos, items);
+            PhlegmGravestoneHelper.spawnForEntity((LivingEntity)(Object)this, pos, items);
             this.captureDrops(null);
             flag.setTrue();
          }
@@ -64,7 +64,7 @@ public abstract class MixinLivingEntity extends Entity implements LivingEntityAc
 
    @Inject(method = "checkTotemDeathProtection", at = @At("TAIL"), cancellable = true)
    public void witherstormmod$evolveWitherStormIfDying_checkTotemDeathProtection(DamageSource damageSource, CallbackInfoReturnable<Boolean> ci) {
-      if (this instanceof WitherStormEntity storm && storm.isCompletelyInvulnerable() && storm.getPhase() < 4) {
+      if ((Object)this instanceof WitherStormEntity storm && storm.isCompletelyInvulnerable() && storm.getPhase() < 4) {
          float health = storm.getHealth() / storm.getMaxHealth();
          if (health <= 0.1F) {
             storm.evolveToPhase(4);
@@ -86,7 +86,7 @@ public abstract class MixinLivingEntity extends Entity implements LivingEntityAc
 
    @Inject(method = "canAttack", at = @At("HEAD"), cancellable = true)
    public void witherstormmod$preventCertainMobsFromAttackingSickenedMobs_canAttack(LivingEntity entity, CallbackInfoReturnable<Boolean> ci) {
-      if (this instanceof WitherBoss
+      if ((Object)this instanceof WitherBoss
          && (
             entity.getType().is(WitherStormModEntityTags.SICKENED_MOBS)
                || entity instanceof WitherSickened

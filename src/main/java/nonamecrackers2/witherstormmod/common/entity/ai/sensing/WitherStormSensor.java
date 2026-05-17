@@ -19,7 +19,7 @@ public class WitherStormSensor extends Sensor<LivingEntity> {
       List<WitherStormEntity> storms = level.getEntitiesOfClass(WitherStormEntity.class, box, stormx -> stormx != entity && stormx.isAlive());
       storms.sort(Comparator.comparingDouble(entity::distanceToSqr));
       Optional<WitherStormEntity> storm = storms.stream().findFirst();
-      entity.getBrain().setMemory((MemoryModuleType)WitherStormModMemoryTypes.NEAREST_WITHER_STORM.get(), storm);
+      entity.getBrain().setMemory((MemoryModuleType<WitherStormEntity>)WitherStormModMemoryTypes.NEAREST_WITHER_STORM.get(), storm);
    }
 
    public Set<MemoryModuleType<?>> requires() {

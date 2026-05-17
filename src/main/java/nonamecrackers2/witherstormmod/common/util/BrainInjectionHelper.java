@@ -31,12 +31,12 @@ import nonamecrackers2.witherstormmod.mixin.IMixinBrain;
 public class BrainInjectionHelper {
    public static void inject(LivingEntity entity) {
       if ((Boolean)WitherStormModConfig.COMMON.injectCustomAiBehavior.get() && entity.getType().equals(EntityType.VILLAGER)) {
-         var villager = (Villager & LivingEntity)entity;
+         Villager villager = (Villager) entity;
          Brain<Villager> brain = villager.getBrain();
          if (brain != null) {
             addMemoryType(villager, (MemoryModuleType<?>)WitherStormModMemoryTypes.NEAREST_WITHER_STORM.get());
             addSensorType(villager, (SensorType)WitherStormModSensorTypes.WITHER_STORM_SENSOR.get());
-            addToActivity(villager, Activity.CORE, ImmutableList.of(Pair.of(-1, new WitherStormPanicTrigger())));
+            addToActivity(villager, Activity.CORE, ImmutableList.<Pair<Integer, ? extends Behavior<? super Villager>>>of(Pair.of(-1, new WitherStormPanicTrigger())));
             brain.addActivityAndRemoveMemoryWhenStopped(
                (Activity)WitherStormModActivities.WITHER_STORM_PANIC.get(),
                0,
@@ -61,7 +61,7 @@ public class BrainInjectionHelper {
    private static <E extends LivingEntity> void addToActivity(
       E entity, Activity activity, ImmutableList<? extends Pair<Integer, ? extends Behavior<? super E>>> behaviors
    ) {
-      Brain<E> brain = entity.getBrain();
+      @SuppressWarnings("unchecked") Brain<E> brain = (Brain<E>) entity.getBrain();
       IMixinBrain<E> mixinBrain = (IMixinBrain<E>)brain;
       Set<Pair<MemoryModuleType<?>, MemoryStatus>> previousRequirements = mixinBrain.getActivityRequirements().get(activity);
       Set<MemoryModuleType<?>> previousMemoriesToErase = mixinBrain.getActivityMemoriesToEraseWhenStopped().getOrDefault(activity, Sets.newHashSet());

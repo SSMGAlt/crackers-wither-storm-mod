@@ -66,13 +66,13 @@ public class WitherStormModEntityTypes {
    );
    public static final RegistryObject<EntityType<WitherStormSegmentEntity>> WITHER_STORM_SEGMENT = register(
       "wither_storm_segment",
-      Builder.of(WitherStormSegmentEntity::new, MobCategory.MONSTER).sized(30.0F, 25.0F).setTrackingRange(512).clientTrackingRange(512).fireImmune()
+      Builder.<WitherStormSegmentEntity>of(WitherStormSegmentEntity::new, MobCategory.MONSTER).sized(30.0F, 25.0F).setTrackingRange(512).clientTrackingRange(512).fireImmune()
    );
    public static final RegistryObject<EntityType<FlamingWitherSkullEntity>> FLAMING_WITHER_SKULL = register(
-      "flaming_wither_skull", Builder.of(FlamingWitherSkullEntity::new, MobCategory.MISC).sized(0.8F, 0.8F).clientTrackingRange(4).updateInterval(10)
+      "flaming_wither_skull", Builder.<FlamingWitherSkullEntity>of(FlamingWitherSkullEntity::new, MobCategory.MISC).sized(0.8F, 0.8F).clientTrackingRange(4).updateInterval(10)
    );
    public static final RegistryObject<EntityType<BlueFlamingWitherSkullEntity>> BLUE_FLAMING_WITHER_SKULL = register(
-      "blue_flaming_wither_skull", Builder.of(BlueFlamingWitherSkullEntity::new, MobCategory.MISC).sized(0.8F, 0.8F).clientTrackingRange(4).updateInterval(10)
+      "blue_flaming_wither_skull", Builder.<BlueFlamingWitherSkullEntity>of(BlueFlamingWitherSkullEntity::new, MobCategory.MISC).sized(0.8F, 0.8F).clientTrackingRange(4).updateInterval(10)
    );
    public static final RegistryObject<EntityType<SickenedZombie>> SICKENED_ZOMBIE = register(
       "sickened_zombie", Builder.of(SickenedZombie::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8)
@@ -87,13 +87,13 @@ public class WitherStormModEntityTypes {
       "sickened_creeper", Builder.of(SickenedCreeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8)
    );
    public static final RegistryObject<EntityType<SuperTNTEntity>> SUPER_TNT = register(
-      "super_tnt", Builder.of(SuperTNTEntity::new, MobCategory.MISC).fireImmune().sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(10)
+      "super_tnt", Builder.<SuperTNTEntity>of(SuperTNTEntity::new, MobCategory.MISC).fireImmune().sized(0.98F, 0.98F).clientTrackingRange(10).updateInterval(10)
    );
    public static final RegistryObject<EntityType<FormidibombEntity>> FORMIDIBOMB = register(
-      "formidibomb", Builder.of(FormidibombEntity::new, MobCategory.MISC).fireImmune().sized(0.98F, 0.98F).clientTrackingRange(10)
+      "formidibomb", Builder.<FormidibombEntity>of(FormidibombEntity::new, MobCategory.MISC).fireImmune().sized(0.98F, 0.98F).clientTrackingRange(10)
    );
    public static final RegistryObject<EntityType<CommandBlockEntity>> COMMAND_BLOCK = register(
-      "command_block", Builder.of(CommandBlockEntity::new, MobCategory.MISC).fireImmune().sized(1.0F, 1.0F).clientTrackingRange(10)
+      "command_block", Builder.<CommandBlockEntity>of(CommandBlockEntity::new, MobCategory.MISC).fireImmune().sized(1.0F, 1.0F).clientTrackingRange(10)
    );
    public static final RegistryObject<EntityType<WitheredSymbiontEntity>> WITHERED_SYMBIONT = register(
       "withered_symbiont", Builder.of(WitheredSymbiontEntity::new, MobCategory.MONSTER).fireImmune().sized(1.2F, 3.8F).clientTrackingRange(10)
@@ -152,7 +152,7 @@ public class WitherStormModEntityTypes {
       "tainted_slime", Builder.of(TaintedSlime::new, MobCategory.MONSTER).noSummon().sized(2.04F, 2.04F).clientTrackingRange(10)
    );
    public static final RegistryObject<EntityType<TentacleSpike>> TENTACLE_SPIKE = register(
-      "tentacle_spike", Builder.of(TentacleSpike::new, MobCategory.MISC).sized(0.5F, 1.4F).clientTrackingRange(6).updateInterval(2)
+      "tentacle_spike", Builder.<TentacleSpike>of(TentacleSpike::new, MobCategory.MISC).sized(0.5F, 1.4F).clientTrackingRange(6).updateInterval(2)
    );
 
    private static <T extends Entity> RegistryObject<EntityType<T>> register(String id, Builder<T> builder) {

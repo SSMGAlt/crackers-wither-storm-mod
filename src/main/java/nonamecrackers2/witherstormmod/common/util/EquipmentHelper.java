@@ -18,7 +18,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ItemLike;
 
 public class EquipmentHelper {
-   private static final List<EquipmentHelper.EquipmentType> HELMETS = (List<EquipmentHelper.EquipmentType>)Util.make(Lists.newArrayList(), helmetTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> HELMETS = Util.make(Lists.<EquipmentHelper.EquipmentType>newArrayList(), helmetTypes -> {
       helmetTypes.add(new EquipmentHelper.EquipmentType(Items.AIR, 15));
       helmetTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_HELMET, 25));
       helmetTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_HELMET, 20));
@@ -27,8 +27,8 @@ public class EquipmentHelper {
       helmetTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_HELMET, 5));
       helmetTypes.add(new EquipmentHelper.EquipmentType(Items.TURTLE_HELMET, 1));
    });
-   private static final List<EquipmentHelper.EquipmentType> ADVANCED_HELMETS = (List<EquipmentHelper.EquipmentType>)Util.make(
-      Lists.newArrayList(), helmetTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> ADVANCED_HELMETS = Util.make(
+      Lists.<EquipmentHelper.EquipmentType>newArrayList(), helmetTypes -> {
          helmetTypes.addAll(HELMETS);
          helmetTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_HELMET, 5));
          helmetTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_HELMET, 10));
@@ -37,8 +37,8 @@ public class EquipmentHelper {
          helmetTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_HELMET, 10));
       }
    );
-   private static final List<EquipmentHelper.EquipmentType> CHESTPLATES = (List<EquipmentHelper.EquipmentType>)Util.make(
-      Lists.newArrayList(), chestplateTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> CHESTPLATES = Util.make(
+      Lists.<EquipmentHelper.EquipmentType>newArrayList(), chestplateTypes -> {
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.AIR, 15));
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_CHESTPLATE, 25));
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_CHESTPLATE, 20));
@@ -47,8 +47,8 @@ public class EquipmentHelper {
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_CHESTPLATE, 5));
       }
    );
-   private static final List<EquipmentHelper.EquipmentType> ADVANCED_CHESTPLATES = (List<EquipmentHelper.EquipmentType>)Util.make(
-      Lists.newArrayList(), chestplateTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> ADVANCED_CHESTPLATES = Util.make(
+      Lists.<EquipmentHelper.EquipmentType>newArrayList(), chestplateTypes -> {
          chestplateTypes.addAll(CHESTPLATES);
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_CHESTPLATE, 5));
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_CHESTPLATE, 10));
@@ -57,7 +57,7 @@ public class EquipmentHelper {
          chestplateTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_CHESTPLATE, 10));
       }
    );
-   private static final List<EquipmentHelper.EquipmentType> LEGGINGS = (List<EquipmentHelper.EquipmentType>)Util.make(Lists.newArrayList(), leggingsTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> LEGGINGS = Util.make(Lists.<EquipmentHelper.EquipmentType>newArrayList(), leggingsTypes -> {
       leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.AIR, 15));
       leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_LEGGINGS, 25));
       leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_LEGGINGS, 20));
@@ -65,8 +65,8 @@ public class EquipmentHelper {
       leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.IRON_LEGGINGS, 10));
       leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_LEGGINGS, 5));
    });
-   private static final List<EquipmentHelper.EquipmentType> ADVANCED_LEGGINGS = (List<EquipmentHelper.EquipmentType>)Util.make(
-      Lists.newArrayList(), leggingsTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> ADVANCED_LEGGINGS = Util.make(
+      Lists.<EquipmentHelper.EquipmentType>newArrayList(), leggingsTypes -> {
          leggingsTypes.addAll(LEGGINGS);
          leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_LEGGINGS, 5));
          leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_LEGGINGS, 10));
@@ -75,7 +75,7 @@ public class EquipmentHelper {
          leggingsTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_LEGGINGS, 10));
       }
    );
-   private static final List<EquipmentHelper.EquipmentType> BOOTS = (List<EquipmentHelper.EquipmentType>)Util.make(Lists.newArrayList(), bootsTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> BOOTS = Util.make(Lists.<EquipmentHelper.EquipmentType>newArrayList(), bootsTypes -> {
       bootsTypes.add(new EquipmentHelper.EquipmentType(Items.AIR, 15));
       bootsTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_BOOTS, 25));
       bootsTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_BOOTS, 20));
@@ -83,8 +83,8 @@ public class EquipmentHelper {
       bootsTypes.add(new EquipmentHelper.EquipmentType(Items.IRON_BOOTS, 10));
       bootsTypes.add(new EquipmentHelper.EquipmentType(Items.DIAMOND_BOOTS, 5));
    });
-   private static final List<EquipmentHelper.EquipmentType> ADVANCED_BOOTS = (List<EquipmentHelper.EquipmentType>)Util.make(
-      Lists.newArrayList(), bootsTypes -> {
+   private static final List<EquipmentHelper.EquipmentType> ADVANCED_BOOTS = Util.make(
+      Lists.<EquipmentHelper.EquipmentType>newArrayList(), bootsTypes -> {
          bootsTypes.addAll(BOOTS);
          bootsTypes.add(new EquipmentHelper.EquipmentType(Items.LEATHER_BOOTS, 5));
          bootsTypes.add(new EquipmentHelper.EquipmentType(Items.CHAINMAIL_BOOTS, 15));

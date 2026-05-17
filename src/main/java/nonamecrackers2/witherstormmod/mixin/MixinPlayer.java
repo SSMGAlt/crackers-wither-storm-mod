@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPlayer {
    @Inject(method = "wantsToStopRiding", at = @At("HEAD"), cancellable = true)
    protected void wantsToStopRiding(CallbackInfoReturnable<Boolean> callback) {
-      if (((Player)this).getVehicle() instanceof TentacleEntity && (Boolean)WitherStormModConfig.COMMON.playerCannotDismountTentacles.get()) {
+      if (((Player)(Object)this).getVehicle() instanceof TentacleEntity && (Boolean)WitherStormModConfig.COMMON.playerCannotDismountTentacles.get()) {
          callback.setReturnValue(false);
       }
    }

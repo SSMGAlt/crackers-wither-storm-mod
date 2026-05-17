@@ -57,7 +57,7 @@ import nonamecrackers2.witherstormmod.common.util.EquipmentHelper;
 import nonamecrackers2.witherstormmod.common.util.WorldUtil;
 
 public class BowelsBossFightStages {
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_1_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_1_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 15)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8)
@@ -75,7 +75,7 @@ public class BowelsBossFightStages {
       .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 4)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 2)
       .build();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_2_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_2_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8)
@@ -94,7 +94,7 @@ public class BowelsBossFightStages {
       .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 8)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 4)
       .build();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_3_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_3_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 4)
@@ -113,8 +113,8 @@ public class BowelsBossFightStages {
       .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 5)
       .build();
-   public static final BossfightPhase<CommandBlockEntity> IDLE = BossfightPhase.blank();
-   public static final BossfightPhase<CommandBlockEntity> HIT = new BossfightPhase(entity -> {
+   public static final BossfightPhase<CommandBlockEntity> IDLE = BossfightPhase.<CommandBlockEntity>blank();
+   public static final BossfightPhase<CommandBlockEntity> HIT = new BossfightPhase<CommandBlockEntity>(entity -> {
       WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(240.0F, 12.0F));
       entity.level().playSound(null, entity.blockPosition(), (SoundEvent)WitherStormModSoundEvents.LOUD_TREMBLE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
       entity.level().playSound(null, entity.blockPosition(), (SoundEvent)WitherStormModSoundEvents.BOWELS_LOUD_HURT.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
@@ -130,7 +130,7 @@ public class BowelsBossFightStages {
          entity.playSound((SoundEvent)WitherStormModSoundEvents.WITHER_STORM_REACTIVATES.get(), 64.0F, 1.0F);
       }
    }, 60);
-   public static final BossfightPhase<CommandBlockEntity> MOVE_PODIUM = new BossfightPhase(entity -> {
+   public static final BossfightPhase<CommandBlockEntity> MOVE_PODIUM = new BossfightPhase<CommandBlockEntity>(entity -> {
       entity.createPodiumCluster();
       WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(120.0F, 12.0F));
       entity.level().playSound(null, entity.blockPosition(), (SoundEvent)WitherStormModSoundEvents.LOUD_TREMBLE.get(), SoundSource.AMBIENT, 1.0F, 1.0F);
@@ -152,8 +152,8 @@ public class BowelsBossFightStages {
       entity.podiumCluster = null;
       entity.podiumClusterUUID = null;
    });
-   public static final BossfightPhase<CommandBlockEntity> WAIT = BossfightPhase.blank().setFixedTime(20);
-   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_1 = new BossfightPhase(
+   public static final BossfightPhase<CommandBlockEntity> WAIT = BossfightPhase.<CommandBlockEntity>blank().setFixedTime(20);
+   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_1 = new BossfightPhase<CommandBlockEntity>(
          entity -> {
             entity.playSound((SoundEvent)WitherStormModSoundEvents.COMMAND_BLOCK_ACTIVATES.get(), 5.0F, 1.0F);
             ((ServerLevel)entity.level())
@@ -185,7 +185,7 @@ public class BowelsBossFightStages {
          }
       })
       .setFinishAction(entity -> entity.playSound((SoundEvent)WitherStormModSoundEvents.COMMAND_BLOCK_POWER_DOWN.get(), 5.0F, 1.0F));
-   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_2 = new BossfightPhase(
+   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_2 = new BossfightPhase<CommandBlockEntity>(
          entity -> {
             WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(120.0F, 8.0F));
             entity.playSound((SoundEvent)WitherStormModSoundEvents.COMMAND_BLOCK_ACTIVATES.get(), 5.0F, 1.0F);
@@ -263,7 +263,7 @@ public class BowelsBossFightStages {
             }
          }
       );
-   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_3 = new BossfightPhase(
+   public static final BossfightPhase<CommandBlockEntity> MOB_WAVE_3 = new BossfightPhase<CommandBlockEntity>(
          entity -> {
             WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(120.0F, 16.0F));
             entity.playSound((SoundEvent)WitherStormModSoundEvents.COMMAND_BLOCK_ACTIVATES.get(), 6.0F, 1.0F);
@@ -346,7 +346,7 @@ public class BowelsBossFightStages {
          }
       }
    });
-   public static final BossfightPhase<CommandBlockEntity> DEATH = new BossfightPhase(entity -> {
+   public static final BossfightPhase<CommandBlockEntity> DEATH = new BossfightPhase<CommandBlockEntity>(entity -> {
          WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(240.0F, 14.0F));
          WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new BlindScreenMessage(240, 120, 80));
          entity.level().playSound(null, entity.blockPosition(), (SoundEvent)WitherStormModSoundEvents.LOUD_TREMBLE.get(), SoundSource.AMBIENT, 5.0F, 1.0F);

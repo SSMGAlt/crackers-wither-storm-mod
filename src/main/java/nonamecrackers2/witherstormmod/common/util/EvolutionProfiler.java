@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import java.util.List;
+import java.util.Map;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -68,7 +69,7 @@ public class EvolutionProfiler {
 
    public void onEvolve(WitherStormEntity storm) {
       int phase = storm.getPhase();
-      this.ticksToEvolve.put(Integer.valueOf(phase), this.ticksSinceLastPhase);
+      ((Map<Integer, Integer>)this.ticksToEvolve).put(phase, this.ticksSinceLastPhase);
       Component message = Component.literal("Phase " + (phase - 1) + " to " + phase + " took " + this.ticksSinceLastPhase + " ticks")
          .withStyle(ChatFormatting.GOLD);
 
@@ -120,7 +121,7 @@ public class EvolutionProfiler {
 
       for (int i = 0; i < list.size(); i++) {
          CompoundTag entryTag = list.getCompound(i);
-         this.ticksToEvolve.put(Integer.valueOf(entryTag.getInt("Phase")), entryTag.getInt("Ticks"));
+         ((Map<Integer, Integer>)this.ticksToEvolve).put(entryTag.getInt("Phase"), entryTag.getInt("Ticks"));
       }
    }
 }

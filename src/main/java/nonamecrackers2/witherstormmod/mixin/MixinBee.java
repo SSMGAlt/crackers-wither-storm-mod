@@ -18,7 +18,7 @@ public abstract class MixinBee extends Animal {
 
    @Inject(method = "isFlowerValid", at = @At("HEAD"), cancellable = true)
    public void witherstormmod$checkIfFlowerValidForSickenedBee_isFlowerValid(BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
-      if ((Bee)this instanceof SickenedBee) {
+      if ((Bee)(Object)this instanceof SickenedBee) {
          ci.setReturnValue(SickenedBee.TAINTABLE.test(this.level().getBlockState(pos)));
       }
    }

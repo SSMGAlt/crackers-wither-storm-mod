@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinVillager {
    @Inject(method = "registerBrainGoals", at = @At("TAIL"))
    public void registerBrainGoalsTail(Brain<Villager> brain, CallbackInfo ci) {
-      BrainInjectionHelper.inject((Villager)this);
+      BrainInjectionHelper.inject((Villager)(Object)this);
    }
 }

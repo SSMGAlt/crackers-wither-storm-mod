@@ -32,13 +32,13 @@ import nonamecrackers2.witherstormmod.common.init.WitherStormModEntityTypes;
 
 public class ClusterBuilderHelper {
    private static final ResourceLocation BOWELS_LOOT = new ResourceLocation("witherstormmod", "chests/bowels_general");
-   private static final SimpleWeightedRandomList<Block> OUTSIDE = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<Block> OUTSIDE = SimpleWeightedRandomList.<Block>builder()
       .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20)
       .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 3)
       .add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 1)
       .add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 1)
       .build();
-   private static final SimpleWeightedRandomList<Block> BLOCKS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<Block> BLOCKS = SimpleWeightedRandomList.<Block>builder()
       .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20)
       .add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 15)
       .add((Block)WitherStormModBlocks.TAINTED_DIRT.get(), 10)
@@ -49,7 +49,7 @@ public class ClusterBuilderHelper {
       .add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 2)
       .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 5)
       .build();
-   private static final SimpleWeightedRandomList<Block> JUNK = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<Block> JUNK = SimpleWeightedRandomList.<Block>builder()
       .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 8)
       .add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 5)
       .add((Block)WitherStormModBlocks.TAINTED_SANDSTONE.get(), 3)
@@ -66,13 +66,13 @@ public class ClusterBuilderHelper {
       .add((Block)WitherStormModBlocks.TAINTED_LOG.get(), 6)
       .add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 4)
       .build();
-   private static final SimpleWeightedRandomList<Block> DECORATION = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<Block> DECORATION = SimpleWeightedRandomList.<Block>builder()
       .add((Block)WitherStormModBlocks.TAINTED_DUST.get(), 10)
       .add((Block)WitherStormModBlocks.TAINTED_MUSHROOM.get(), 5)
       .add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 1)
       .add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_SITTING.get(), 1)
       .build();
-   private static final SimpleWeightedRandomList<Block> CHEWED = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<Block> CHEWED = SimpleWeightedRandomList.<Block>builder()
       .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 10)
       .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 10)
       .add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_LYING.get(), 2)

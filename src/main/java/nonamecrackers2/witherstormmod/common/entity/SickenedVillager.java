@@ -45,8 +45,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 
 public class SickenedVillager extends SickenedZombie implements VillagerDataHolder {
-   public static final Map<VillagerProfession, ItemListing[]> SICKENED_TRADES = (Map<VillagerProfession, ItemListing[]>)Util.make(
-      Maps.newHashMap(),
+   public static final Map<VillagerProfession, ItemListing[]> SICKENED_TRADES = Util.make(
+      Maps.<VillagerProfession, ItemListing[]>newHashMap(),
       map -> {
          for (VillagerProfession profession : ForgeRegistries.VILLAGER_PROFESSIONS.getValues()) {
             if (profession != VillagerProfession.NONE && profession != VillagerProfession.NITWIT) {
