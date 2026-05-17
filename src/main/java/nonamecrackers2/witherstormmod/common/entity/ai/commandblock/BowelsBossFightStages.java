@@ -57,62 +57,70 @@ import nonamecrackers2.witherstormmod.common.util.EquipmentHelper;
 import nonamecrackers2.witherstormmod.common.util.WorldUtil;
 
 public class BowelsBossFightStages {
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_1_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 15)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 3)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 2)
-      .build();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_2_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_IRON_GOLEM.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 3)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 3)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 8)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 4)
-      .build();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_3_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_IRON_GOLEM.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 8)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 5)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 5)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 5)
-      .build();
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_1_MOBS;
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_2_MOBS;
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> WAVE_3_MOBS;
+
+   static {
+      SimpleWeightedRandomList.Builder<EntityType<? extends Mob>> b1 = SimpleWeightedRandomList.builder();
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 15);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 2);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 1);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 1);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 6);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 6);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 6);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 3);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 2);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 2);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 2);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 4);
+      b1.add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 2);
+      WAVE_1_MOBS = b1.build();
+
+      SimpleWeightedRandomList.Builder<EntityType<? extends Mob>> b2 = SimpleWeightedRandomList.builder();
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 8);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 6);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_IRON_GOLEM.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 2);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 6);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 4);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 3);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 3);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 8);
+      b2.add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 4);
+      WAVE_2_MOBS = b2.build();
+
+      SimpleWeightedRandomList.Builder<EntityType<? extends Mob>> b3 = SimpleWeightedRandomList.builder();
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 4);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 6);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_IRON_GOLEM.get(), 6);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 6);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_PHANTOM.get(), 4);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 1);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 1);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_MUSHROOM_COW.get(), 1);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 1);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 8);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 6);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 5);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 5);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 10);
+      b3.add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 5);
+      WAVE_3_MOBS = b3.build();
+   }
    public static final BossfightPhase<CommandBlockEntity> IDLE = BossfightPhase.<CommandBlockEntity>blank();
    public static final BossfightPhase<CommandBlockEntity> HIT = new BossfightPhase<CommandBlockEntity>(entity -> {
       WitherStormModPacketHandlers.MAIN.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ShakeScreenMessage(240.0F, 12.0F));

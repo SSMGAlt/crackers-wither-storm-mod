@@ -33,7 +33,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon -Dorg.gradle.jvmargs="-Xss8m"
 
       - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4

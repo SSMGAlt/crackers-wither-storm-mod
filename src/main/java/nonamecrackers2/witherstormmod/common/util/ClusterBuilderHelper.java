@@ -32,52 +32,64 @@ import nonamecrackers2.witherstormmod.common.init.WitherStormModEntityTypes;
 
 public class ClusterBuilderHelper {
    private static final ResourceLocation BOWELS_LOOT = new ResourceLocation("witherstormmod", "chests/bowels_general");
-   private static final SimpleWeightedRandomList<Block> OUTSIDE = SimpleWeightedRandomList.<Block>builder()
-      .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20)
-      .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 3)
-      .add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 1)
-      .add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 1)
-      .build();
-   private static final SimpleWeightedRandomList<Block> BLOCKS = SimpleWeightedRandomList.<Block>builder()
-      .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20)
-      .add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 15)
-      .add((Block)WitherStormModBlocks.TAINTED_DIRT.get(), 10)
-      .add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 10)
-      .add((Block)WitherStormModBlocks.TAINTED_STONE.get(), 10)
-      .add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 8)
-      .add((Block)WitherStormModBlocks.TAINTED_LOG.get(), 5)
-      .add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 2)
-      .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 5)
-      .build();
-   private static final SimpleWeightedRandomList<Block> JUNK = SimpleWeightedRandomList.<Block>builder()
-      .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 8)
-      .add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 5)
-      .add((Block)WitherStormModBlocks.TAINTED_SANDSTONE.get(), 3)
-      .add((Block)WitherStormModBlocks.TAINTED_DIRT.get(), 4)
-      .add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 6)
-      .add((Block)WitherStormModBlocks.TAINTED_STONE.get(), 6)
-      .add((Block)WitherStormModBlocks.TAINTED_DUST_BLOCK.get(), 2)
-      .add((Block)WitherStormModBlocks.TAINTED_GLASS.get(), 2)
-      .add((Block)WitherStormModBlocks.TAINTED_PUMPKIN.get(), 1)
-      .add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_LYING.get(), 1)
-      .add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 1)
-      .add((Block)WitherStormModBlocks.TAINTED_WOOD.get(), 4)
-      .add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 6)
-      .add((Block)WitherStormModBlocks.TAINTED_LOG.get(), 6)
-      .add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 4)
-      .build();
-   private static final SimpleWeightedRandomList<Block> DECORATION = SimpleWeightedRandomList.<Block>builder()
-      .add((Block)WitherStormModBlocks.TAINTED_DUST.get(), 10)
-      .add((Block)WitherStormModBlocks.TAINTED_MUSHROOM.get(), 5)
-      .add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 1)
-      .add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_SITTING.get(), 1)
-      .build();
-   private static final SimpleWeightedRandomList<Block> CHEWED = SimpleWeightedRandomList.<Block>builder()
-      .add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 10)
-      .add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 10)
-      .add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_LYING.get(), 2)
-      .add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 2)
-      .build();
+   private static final SimpleWeightedRandomList<Block> OUTSIDE;
+   private static final SimpleWeightedRandomList<Block> BLOCKS;
+   private static final SimpleWeightedRandomList<Block> JUNK;
+   private static final SimpleWeightedRandomList<Block> DECORATION;
+   private static final SimpleWeightedRandomList<Block> CHEWED;
+
+   static {
+      SimpleWeightedRandomList.Builder<Block> bOut = SimpleWeightedRandomList.builder();
+      bOut.add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20);
+      bOut.add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 3);
+      bOut.add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 1);
+      bOut.add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 1);
+      OUTSIDE = bOut.build();
+
+      SimpleWeightedRandomList.Builder<Block> bBlk = SimpleWeightedRandomList.builder();
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 20);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 15);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_DIRT.get(), 10);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 10);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_STONE.get(), 10);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 8);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_LOG.get(), 5);
+      bBlk.add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 2);
+      bBlk.add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 5);
+      BLOCKS = bBlk.build();
+
+      SimpleWeightedRandomList.Builder<Block> bJnk = SimpleWeightedRandomList.builder();
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 8);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_SAND.get(), 5);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_SANDSTONE.get(), 3);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_DIRT.get(), 4);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_COBBLESTONE.get(), 6);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_STONE.get(), 6);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_DUST_BLOCK.get(), 2);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_GLASS.get(), 2);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_PUMPKIN.get(), 1);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_LYING.get(), 1);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 1);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_WOOD.get(), 4);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_PLANKS.get(), 6);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_LOG.get(), 6);
+      bJnk.add((Block)WitherStormModBlocks.TAINTED_LEAVES.get(), 4);
+      JUNK = bJnk.build();
+
+      SimpleWeightedRandomList.Builder<Block> bDec = SimpleWeightedRandomList.builder();
+      bDec.add((Block)WitherStormModBlocks.TAINTED_DUST.get(), 10);
+      bDec.add((Block)WitherStormModBlocks.TAINTED_MUSHROOM.get(), 5);
+      bDec.add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 1);
+      bDec.add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_SITTING.get(), 1);
+      DECORATION = bDec.build();
+
+      SimpleWeightedRandomList.Builder<Block> bChw = SimpleWeightedRandomList.builder();
+      bChw.add((Block)WitherStormModBlocks.TAINTED_FLESH_BLOCK.get(), 10);
+      bChw.add((Block)WitherStormModBlocks.INFECTED_FLESH_BLOCK.get(), 10);
+      bChw.add((Block)WitherStormModBlocks.TAINTED_ZOMBIE_LYING.get(), 2);
+      bChw.add((Block)WitherStormModBlocks.TAINTED_BONE_PILE.get(), 2);
+      CHEWED = bChw.build();
+   }
 
    public static BlockClusterEntity buildSmallRandomDeathCluster(Level level, RandomSource random, int radius) {
       Map<BlockPos, BlockState> states = Maps.newLinkedHashMap();

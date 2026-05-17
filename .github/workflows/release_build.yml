@@ -3,7 +3,7 @@ name: Release Build
 on:
   push:
     branches:
-      - main
+      - 1.20.1-src
     tags:
       - 'v*.*.*'
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon -Dorg.gradle.jvmargs="-Xss8m"
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v4

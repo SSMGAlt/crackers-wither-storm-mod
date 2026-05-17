@@ -109,22 +109,26 @@ public class CommandBlockEntity extends LivingEntity implements EntitySyncableDa
       && !player.isCreative()
       && !player.isSpectator()
       && player.isAttackable();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> IDLE_BOWELS_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 6)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 4)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 2)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 3)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 1)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 3)
-      .build();
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> IDLE_BOWELS_MOBS;
+
+   static {
+      SimpleWeightedRandomList.Builder<EntityType<? extends Mob>> b = SimpleWeightedRandomList.builder();
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 6);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_CREEPER.get(), 1);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_CHICKEN.get(), 4);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_COW.get(), 4);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_PIG.get(), 4);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_PARROT.get(), 2);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_WOLF.get(), 1);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_CAT.get(), 1);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_BEE.get(), 1);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 3);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 1);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 3);
+      IDLE_BOWELS_MOBS = b.build();
+   }
    public static final int HIT_GLARE_TIME = 60;
    private int modeAnim;
    private int modeAnimO;
