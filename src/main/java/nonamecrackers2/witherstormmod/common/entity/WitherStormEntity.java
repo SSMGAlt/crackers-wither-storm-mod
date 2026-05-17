@@ -223,10 +223,10 @@ public class WitherStormEntity extends Monster implements PowerableMob, EntitySy
             .isNotInstanceOf(AmbientCreature.class))
          .isNotInstanceOf(ArmorStand.class))
       .build();
-   public static final Predicate<LivingEntity> HUNCHBACK_LIVING_ENTITY_SELECTOR = ((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)EntityPredicateBuilder.and()
-               .addTest(DESTROYER_LIVING_ENTITY_SELECTOR))
-            .isNotInstanceOf(AbstractSchoolingFish.class))
-         .isNotInstanceOf(Squid.class))
+   public static final Predicate<LivingEntity> HUNCHBACK_LIVING_ENTITY_SELECTOR = EntityPredicateBuilder.<LivingEntity>and()
+         .addTest(DESTROYER_LIVING_ENTITY_SELECTOR)
+         .isNotInstanceOf(AbstractSchoolingFish.class)
+         .isNotInstanceOf(Squid.class)
       .build();
    public static final Predicate<Entity> DISTRACTION_SELECTOR = ((EntityPredicateBuilder)EntityPredicateBuilder.or().isInstanceOf(FireworkRocketEntity.class))
       .build();
@@ -417,11 +417,11 @@ public class WitherStormEntity extends Monster implements PowerableMob, EntitySy
 
    protected void registerGoals() {
       this.entitySelector = entity -> this.getPhase() <= 3 ? HUNCHBACK_LIVING_ENTITY_SELECTOR.test(entity) : DESTROYER_LIVING_ENTITY_SELECTOR.test(entity);
-      this.headGoalSelectors = ImmutableList.builder()
+      this.headGoalSelectors = ImmutableList.<GoalSelector>builder()
          .add(new GoalSelector(this.level().getProfilerSupplier()))
          .add(new GoalSelector(this.level().getProfilerSupplier()))
          .build();
-      this.headTargetSelectors = ImmutableList.builder()
+      this.headTargetSelectors = ImmutableList.<GoalSelector>builder()
          .add(new GoalSelector(this.level().getProfilerSupplier()))
          .add(new GoalSelector(this.level().getProfilerSupplier()))
          .build();
@@ -433,7 +433,7 @@ public class WitherStormEntity extends Monster implements PowerableMob, EntitySy
             RemovableGoals.Builder.builder()
                .put(1, new LookAtFormidibombGoal(this))
                .put(2, new LookAtDistractionGoal(this, 0, () -> 300.0))
-               .put(4, new LookAtTargetGoal(this, 0, s -> s.getPhase() > 3 ? 50 : 3))
+               .put(4, new LookAtTargetGoal<>(this, 0, s -> s.getPhase() > 3 ? 50 : 3))
                .build(this.goalSelector)
          );
       this.goalSelector.addGoal(7, new WitherStormLookRandomlyGoal(this, 0, 120));
@@ -457,7 +457,7 @@ public class WitherStormEntity extends Monster implements PowerableMob, EntitySy
                   REMOVABLE_LOOK_GOALS[head],
                   RemovableGoals.Builder.builder()
                      .put(1, new LookAtDistractionGoal(this, head, () -> 300.0))
-                     .put(2, new LookAtTargetGoal(this, head, s -> s.getPhase() > 3 ? 50 : 3))
+                     .put(2, new LookAtTargetGoal<>(this, head, s -> s.getPhase() > 3 ? 50 : 3))
                      .build(selector)
                );
             selector.addGoal(3, new WitherStormLookRandomlyGoal(this, head, 120));

@@ -194,7 +194,7 @@ public class FormidibombEntity extends PrimedTnt implements IFormidibomb {
    }
 
    public BlockState getBlockState() {
-      return ((Optional)this.entityData.get(BLOCK_STATE)).orElse(((Block)WitherStormModBlocks.FORMIDIBOMB.get()).defaultBlockState());
+      return this.entityData.get(BLOCK_STATE).orElse(((Block)WitherStormModBlocks.FORMIDIBOMB.get()).defaultBlockState());
    }
 
    public void setBlockState(@Nullable BlockState state) {

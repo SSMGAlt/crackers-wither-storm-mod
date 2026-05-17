@@ -77,7 +77,8 @@ public interface WitherSickened {
       if (!cast.level().isClientSide && cast.isAlive() && this.isConverting()) {
          int i = this.getConversionProgress();
          data.conversionTime -= i;
-         if (data.getConversionTime() <= 0 && ForgeEventFactory.canLivingConvert(cast, cast.getType(), timer -> data.conversionTime = timer)) {
+         @SuppressWarnings("unchecked") EntityType<? extends LivingEntity> castType = (EntityType<? extends LivingEntity>) cast.getType();
+         if (data.getConversionTime() <= 0 && ForgeEventFactory.canLivingConvert(cast, castType, timer -> data.conversionTime = timer)) {
             this.cure((ServerLevel)cast.level());
          }
       }
@@ -215,7 +216,7 @@ public interface WitherSickened {
       WitherSickened.Data data = this.getData();
       EntityType<?> original = this.getOriginalType();
       if (original != null) {
-         Mob entity = cast.convertTo(original, false);
+         @SuppressWarnings("unchecked") Mob entity = cast.convertTo((EntityType<? extends Mob>) original, false);
          if (entity != null) {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                ItemStack stack = cast.getItemBySlot(slot);

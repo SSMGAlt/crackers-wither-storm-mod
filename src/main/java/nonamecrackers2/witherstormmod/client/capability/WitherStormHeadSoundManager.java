@@ -27,7 +27,7 @@ public class WitherStormHeadSoundManager extends EntitySoundManager<WitherStormH
    }
 
    protected TractorBeamLoop<WitherStormHeadEntity> create(WitherStormHeadEntity entity) {
-      return new TractorBeamLoop(entity, loopEntity -> !loopEntity.tractorBeamActive(0));
+      return new TractorBeamLoop<>(entity, loopEntity -> !loopEntity.tractorBeamActive(0));
    }
 
    protected TractorBeamLoop<WitherStormHeadEntity> copyFrom(TractorBeamLoop<WitherStormHeadEntity> loop) {

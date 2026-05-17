@@ -109,7 +109,7 @@ public class CommandBlockEntity extends LivingEntity implements EntitySyncableDa
       && !player.isCreative()
       && !player.isSpectator()
       && player.isAttackable();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> IDLE_BOWELS_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> IDLE_BOWELS_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 10)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SPIDER.get(), 6)

@@ -152,7 +152,7 @@ public class WitheredSymbiontEntity extends Monster implements BossThemeEntity {
       && !(entity instanceof WitherStormHeadEntity)
       && !(entity instanceof TentacleEntity)
       && !(entity instanceof CommandBlockEntity);
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> SYMBIONT_NORMAL_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> SYMBIONT_NORMAL_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 8)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 4)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 8)
@@ -170,7 +170,7 @@ public class WitheredSymbiontEntity extends Monster implements BossThemeEntity {
       .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 3)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 3)
       .build();
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> SYMBIONT_HARDER_MOBS = SimpleWeightedRandomList.builder()
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> SYMBIONT_HARDER_MOBS = SimpleWeightedRandomList.<EntityType<? extends Mob>>builder()
       .add((EntityType)WitherStormModEntityTypes.SICKENED_ZOMBIE.get(), 8)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_VILLAGER.get(), 6)
       .add((EntityType)WitherStormModEntityTypes.SICKENED_SKELETON.get(), 8)
@@ -215,7 +215,7 @@ public class WitheredSymbiontEntity extends Monster implements BossThemeEntity {
    public WitheredSymbiontEntity(EntityType<? extends WitheredSymbiontEntity> type, Level world) {
       super(type, world);
       this.xpReward = 150;
-      this.lookControl = new ConditionalLookController(this, entity -> !entity.isVulnerable() && !entity.isDeadOrDying());
+      this.lookControl = new ConditionalLookController<>(this, entity -> !entity.isVulnerable() && !entity.isDeadOrDying());
    }
 
    private static TargetingConditions protectPredicate(double radius) {

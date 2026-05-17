@@ -279,11 +279,13 @@ public class WitherStormModRenderers {
    }
 
    @SubscribeEvent
+   @SuppressWarnings("unchecked")
    public static void addRendererLayers(AddLayers event) {
       Minecraft mc = Minecraft.getInstance();
       EntityRenderDispatcher manager = mc.getEntityRenderDispatcher();
       manager.getSkinMap().forEach((type, rendererx) -> {
-         if (rendererx instanceof LivingEntityRenderer<Player, EntityModel<Player>> livingRendererx) {
+         if (rendererx instanceof LivingEntityRenderer<?,?> lr) {
+            LivingEntityRenderer<Player, EntityModel<Player>> livingRendererx = (LivingEntityRenderer<Player, EntityModel<Player>>) lr;
             if ((Boolean)WitherStormModConfig.CLIENT.witherSicknessLayer.get()) {
                livingRendererx.addLayer(new WitherSicknessLayer(livingRendererx));
             }
@@ -294,7 +296,8 @@ public class WitherStormModRenderers {
 
       for (Entry<EntityType<?>, EntityRenderer<?>> entry : manager.renderers.entrySet()) {
          EntityRenderer<?> renderer = entry.getValue();
-         if (renderer instanceof LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>> livingRenderer) {
+         if (renderer instanceof LivingEntityRenderer<?,?> lr) {
+            LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>> livingRenderer = (LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>>) lr;
             if ((Boolean)WitherStormModConfig.CLIENT.witherSicknessLayer.get()) {
                livingRenderer.addLayer(new WitherSicknessLayer(livingRenderer));
             }

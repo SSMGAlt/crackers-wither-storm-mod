@@ -68,7 +68,7 @@ public class EvolutionProfiler {
 
    public void onEvolve(WitherStormEntity storm) {
       int phase = storm.getPhase();
-      this.ticksToEvolve.put(phase, this.ticksSinceLastPhase);
+      this.ticksToEvolve.put(Integer.valueOf(phase), this.ticksSinceLastPhase);
       Component message = Component.literal("Phase " + (phase - 1) + " to " + phase + " took " + this.ticksSinceLastPhase + " ticks")
          .withStyle(ChatFormatting.GOLD);
 
@@ -120,7 +120,7 @@ public class EvolutionProfiler {
 
       for (int i = 0; i < list.size(); i++) {
          CompoundTag entryTag = list.getCompound(i);
-         this.ticksToEvolve.put(entryTag.getInt("Phase"), entryTag.getInt("Ticks"));
+         this.ticksToEvolve.put(Integer.valueOf(entryTag.getInt("Phase")), entryTag.getInt("Ticks"));
       }
    }
 }

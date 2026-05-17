@@ -160,11 +160,11 @@ public class ClientBlockClusterEntity extends BlockClusterEntity {
       }
 
       public int getRawBrightness(BlockPos pos, int skyOffset) {
-         return CompatHelper.areShadersRunning() ? super.getRawBrightness(pos, skyOffset) : 15;
+         return CompatHelper.areShadersRunning() ? this.wrapped.getRawBrightness(pos, skyOffset) : 15;
       }
 
       public int getBrightness(LightLayer layer, BlockPos pos) {
-         return CompatHelper.areShadersRunning() ? super.getBrightness(layer, pos) : 15;
+         return CompatHelper.areShadersRunning() ? this.wrapped.getBrightness(layer, pos) : 15;
       }
 
       public int getBlockTint(BlockPos pos, ColorResolver resolver) {

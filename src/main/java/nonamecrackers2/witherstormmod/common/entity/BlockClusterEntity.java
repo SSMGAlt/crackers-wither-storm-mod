@@ -299,7 +299,7 @@ public class BlockClusterEntity extends Entity {
       compound.putInt("ShakeTime", this.shakeTime);
       compound.putInt("GroundSink", this.getSink());
       compound.putBoolean("AntiStacking", this.antiStacking());
-      ((Optional)this.entityData.get(FADE_POINT)).ifPresent(pos -> compound.put("StaticFadePos", NbtUtils.writeBlockPos(pos)));
+      this.entityData.get(FADE_POINT).ifPresent(pos -> compound.put("StaticFadePos", NbtUtils.writeBlockPos(pos)));
       compound.putBoolean("ShouldCrumble", this.shouldCrumble);
       compound.putBoolean("ShouldntCountToConsumedEntities", this.shouldntCountToConsumedEntities);
       compound.putBoolean("CreatedFromBeam", this.createdFromBeam);
@@ -652,7 +652,7 @@ public class BlockClusterEntity extends Entity {
 
    @Nullable
    public BlockPos getFadePos() {
-      return (BlockPos)((Optional)this.entityData.get(FADE_POINT)).orElse(null);
+      return this.entityData.get(FADE_POINT).orElse(null);
    }
 
    public void setFadePos(@Nullable BlockPos pos) {

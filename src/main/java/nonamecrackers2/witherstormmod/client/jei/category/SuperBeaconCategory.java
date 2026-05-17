@@ -9,7 +9,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.library.gui.ingredients.RecipeSlot;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.RegistryAccess;
@@ -63,11 +63,7 @@ public abstract class SuperBeaconCategory<T extends SuperBeaconRecipe> implement
       }
 
       for (IRecipeSlotView slotView : recipeSlotsView.getSlotViews()) {
-         if (slotView instanceof RecipeSlot slot) {
-            int x = slot.getRect().getX();
-            int y = slot.getRect().getY();
-            stack.blit(SLOT, x - 1, y - 1, 0, 0.0F, 0.0F, 18, 18, 256, 256);
-         }
+         slotView.getDisplayedIngredient().ifPresent(ingredient -> {});
       }
    }
 

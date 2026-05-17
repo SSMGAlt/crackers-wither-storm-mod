@@ -36,6 +36,6 @@ public class WitherStormTractorBeamLoop extends TractorBeamLoop<WitherStormEntit
 
    @Override
    protected Vec3 calculateClosestPoint() {
-      return TractorBeamHelper.calculateClosestPoint(this.player.position(), (WitherStormEntity & LivingEntity)this.entity, this.head);
+      return TractorBeamHelper.calculateClosestPoint(this.player.position(), this.entity, this.head);
    }
 }

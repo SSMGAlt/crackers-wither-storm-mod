@@ -236,7 +236,7 @@ public abstract class AbstractWitherStormModel<T extends WitherStormEntity> {
 
    public ModelPart getRandomPart(T entity, RandomSource random) {
       ModelPart model = this.getMassModel(entity);
-      List<ModelPart> children = new ArrayList<>(((IMixinModelPart)model).getChildren().values());
+      List<ModelPart> children = new ArrayList<>(((IMixinModelPart)(Object)model).getChildren().values());
       if (!children.isEmpty()) {
          ModelPart potential = children.get(random.nextInt(children.size()));
          if (!potential.isEmpty()) {
