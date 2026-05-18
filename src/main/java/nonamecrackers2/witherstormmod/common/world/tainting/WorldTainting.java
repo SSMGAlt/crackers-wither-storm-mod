@@ -150,7 +150,7 @@ public class WorldTainting {
                   CompoundTag data = mob.serializeNBT();
 
                   try {
-                     Mob converted = mob.convertTo(conversion.to(), true);
+                     @SuppressWarnings("unchecked") Mob converted = mob.convertTo((EntityType<? extends Mob>) conversion.to(), true);
                      if (converted != null) {
                         copyExtraData(mob, converted);
                         if (converted instanceof WitherSickened sickened) {

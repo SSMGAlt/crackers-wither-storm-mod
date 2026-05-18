@@ -46,7 +46,7 @@ public class WitherStormModJEICompat implements IModPlugin {
       Minecraft mc = Minecraft.getInstance();
       RecipeManager manager = mc.level.getRecipeManager();
       registration.addRecipes(
-         SUPER_BEACON_ITEM_CRAFTING, manager.getAllRecipesFor((net.minecraft.world.item.crafting.RecipeType<SuperBeaconItemCraftingRecipe>)WitherStormModRecipeTypes.SUPER_BEACON_ITEM.get())
+         SUPER_BEACON_ITEM_CRAFTING, manager.getAllRecipesFor((net.minecraft.world.item.crafting.RecipeType<ItemCraftSuperBeaconRecipe>)WitherStormModRecipeTypes.SUPER_BEACON_ITEM.get())
       );
       registration.addRecipes(
          SUPER_BEACON_SUMMONING, manager.getAllRecipesFor((net.minecraft.world.item.crafting.RecipeType<ResummonSuperBeaconRecipe>)WitherStormModRecipeTypes.SUPER_BEACON_RESUMMON.get())

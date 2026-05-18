@@ -90,7 +90,8 @@ public class WitherStormModRenderEvents {
       BiConsumer<T, AbstractWitherStormRenderer<T, M>> action
    ) {
       for (Entity entity : world.entitiesForRendering()) {
-         if (entity instanceof T storm) {
+         if (entity instanceof WitherStormEntity) {
+            @SuppressWarnings("unchecked") T storm = (T) entity;
             AbstractWitherStormRenderer<T, M> renderer = AbstractWitherStormRenderer.getRenderer(storm, manager);
             if (renderer != null) {
                stack.pushPose();
