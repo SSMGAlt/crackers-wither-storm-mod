@@ -95,7 +95,7 @@ public class ChunkLoaderCommands {
                   ),
                   false
                );
-               List<Ticket<?>> tickets = ((SortedArraySet)getTickets(source.getLevel()).get(storm.chunkPosition().toLong()))
+               @SuppressWarnings("unchecked") List<Ticket<?>> tickets = ((SortedArraySet<Ticket<?>>)getTickets(source.getLevel()).get(storm.chunkPosition().toLong()))
                   .stream()
                   .filter(t -> t.getType() == WitherStormModChunkLoader.WITHER_STORM)
                   .collect(Collectors.toList());

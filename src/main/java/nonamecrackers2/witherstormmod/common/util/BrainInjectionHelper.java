@@ -40,7 +40,7 @@ public class BrainInjectionHelper {
             brain.addActivityAndRemoveMemoryWhenStopped(
                (Activity)WitherStormModActivities.WITHER_STORM_PANIC.get(),
                0,
-               ImmutableList.of(
+               ImmutableList.<BehaviorControl<? super Villager>>of(
                   new VillagerCalmDownFromWitherStorm(),
                   SetWalkTargetAwayFrom.entity((MemoryModuleType)WitherStormModMemoryTypes.NEAREST_WITHER_STORM.get(), 0.75F, 300, true),
                   RandomStroll.stroll(1.0F),

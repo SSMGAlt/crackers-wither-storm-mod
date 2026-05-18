@@ -41,21 +41,21 @@ import nonamecrackers2.witherstormmod.common.predicate.EntityPredicateBuilder;
 import nonamecrackers2.witherstormmod.mixin.IMixinBrain;
 
 public class InjectCustomGoalsEvents {
-   public static final Predicate<LivingEntity> CAN_RUN_AWAY_FROM_WITHER_STORM = ((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)EntityPredicateBuilder.and()
-                  .isNotInstanceOf(WitherSickened.class))
-               .isNotInstanceOf(WitherSkeleton.class))
-            .addTest(
-               ((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)EntityPredicateBuilder.or()
-                                       .isInstanceOf(Zombie.class))
-                                    .isInstanceOf(Spider.class))
-                                 .isInstanceOf(AbstractSkeleton.class))
-                              .isInstanceOf(Creeper.class))
-                           .isInstanceOf(AbstractPiglin.class))
-                        .isInstanceOf(Pillager.class))
-                     .isInstanceOf(Animal.class))
-                  .build()
-            ))
-         .addTest(e -> ((IMixinBrain)e.getBrain()).getCoreActivities().isEmpty()))
+   public static final Predicate<LivingEntity> CAN_RUN_AWAY_FROM_WITHER_STORM = EntityPredicateBuilder.<LivingEntity>and()
+         .isNotInstanceOf(WitherSickened.class)
+         .isNotInstanceOf(WitherSkeleton.class)
+         .addTest(
+            EntityPredicateBuilder.<LivingEntity>or()
+                  .isInstanceOf(Zombie.class)
+                  .isInstanceOf(Spider.class)
+                  .isInstanceOf(AbstractSkeleton.class)
+                  .isInstanceOf(Creeper.class)
+                  .isInstanceOf(AbstractPiglin.class)
+                  .isInstanceOf(Pillager.class)
+                  .isInstanceOf(Animal.class)
+               .build()
+         )
+         .addTest(e -> ((IMixinBrain)e.getBrain()).getCoreActivities().isEmpty())
       .build();
    public static final Predicate<LivingEntity> CAN_ATTACK_WITHER_STORM_BACK = ((EntityPredicateBuilder)((EntityPredicateBuilder)((EntityPredicateBuilder)EntityPredicateBuilder.and()
                .isNotInstanceOf(WitherSickened.class))

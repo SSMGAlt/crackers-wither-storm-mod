@@ -28,9 +28,9 @@ public class AvoidWitherStormGoal extends AvoidEntityGoal<WitherStormEntity> {
       AABB box = this.mob.getBoundingBox().inflate(this.maxDist);
       List<WitherStormEntity> storms = this.mob.level().getEntitiesOfClass(WitherStormEntity.class, box, storm -> storm != this.mob && storm.isAlive());
       storms.sort(Comparator.comparingDouble(this.mob::distanceToSqr));
-      this.toAvoid = (LivingEntity)storms.stream().findFirst().orElse(null);
+      this.toAvoid = storms.stream().findFirst().orElse(null);
       if (this.toAvoid != null
-         && (!(Boolean)TractorBeamHelper.isInsideTractorBeam(this.mob, (WitherStormEntity & LivingEntity)this.toAvoid, 4.0).getFirst() || this.mob.onGround())
+         && (!(Boolean)TractorBeamHelper.isInsideTractorBeam(this.mob, (WitherStormEntity)this.toAvoid, 4.0).getFirst() || this.mob.onGround())
          && WorldUtil.canSeeOrIsNotInASmallArea(this.toAvoid, this.mob)) {
          BlockPos portalPos = null;
          if ((Boolean)WitherStormModConfig.SERVER.mobsRunIntoPortals.get()) {
@@ -60,7 +60,7 @@ public class AvoidWitherStormGoal extends AvoidEntityGoal<WitherStormEntity> {
 
    public boolean canContinueToUse() {
       boolean flag = this.toAvoid == null
-         || !(Boolean)TractorBeamHelper.isInsideTractorBeam(this.mob, (WitherStormEntity & LivingEntity)this.toAvoid, 4.0).getFirst()
+         || !(Boolean)TractorBeamHelper.isInsideTractorBeam(this.mob, (WitherStormEntity)this.toAvoid, 4.0).getFirst()
          || this.mob.onGround();
       return super.canContinueToUse() && flag;
    }

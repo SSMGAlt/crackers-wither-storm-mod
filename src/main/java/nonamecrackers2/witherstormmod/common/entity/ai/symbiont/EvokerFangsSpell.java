@@ -25,10 +25,14 @@ import nonamecrackers2.witherstormmod.common.init.WitherStormModEntityTypes;
 import nonamecrackers2.witherstormmod.common.util.WorldUtil;
 
 public class EvokerFangsSpell extends SymbiontSpell {
-   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> PILLAGERS = SimpleWeightedRandomList.builder()
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 3)
-      .add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 3)
-      .build();
+   private static final SimpleWeightedRandomList<EntityType<? extends Mob>> PILLAGERS;
+
+   static {
+      SimpleWeightedRandomList.Builder<EntityType<? extends Mob>> b = SimpleWeightedRandomList.builder();
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_PILLAGER.get(), 3);
+      b.add((EntityType)WitherStormModEntityTypes.SICKENED_VINDICATOR.get(), 3);
+      PILLAGERS = b.build();
+   }
 
    public EvokerFangsSpell(WitheredSymbiontEntity symbiont, SpellType type) {
       super(symbiont, type);
