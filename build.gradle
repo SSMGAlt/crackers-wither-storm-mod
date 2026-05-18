@@ -14,6 +14,10 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+jarJar {
+    enable()
+}
+
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
@@ -78,10 +82,20 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     implementation fg.deobf("nonamecrackers2:crackerslib-forge:${minecraft_version}-${crackerslib_version}")
+    jarJar("nonamecrackers2:crackerslib-forge:${minecraft_version}-${crackerslib_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+tasks.named('compileJava', JavaCompile).configure {
+    options.compilerArgs += [
+        '-AreobfTsrgFile=' + tasks.named('createMcpToSrg').get().output,
+        '-AoutRefMapFile=' + layout.buildDirectory.file('tmp/compileJava/witherstormmod.refmap.json').get().asFile.absolutePath,
+    ]
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -100,6 +114,10 @@ tasks.named('processResources', ProcessResources).configure {
 }
 
 tasks.named('jar', Jar).configure {
+    from(layout.buildDirectory.file('tmp/compileJava/witherstormmod.refmap.json')) {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
     manifest {
         attributes([
                 'Specification-Title'     : mod_id,
@@ -108,11 +126,33 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : 'witherstormmod.mixins.json'
         ])
     }
 
     finalizedBy 'reobfJar'
+}
+
+tasks.named('jarJar', Jar).configure {
+    from(layout.buildDirectory.file('tmp/compileJava/witherstormmod.refmap.json')) {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : 'witherstormmod.mixins.json'
+        ])
+    }
+
+    finalizedBy 'reobfJarJar'
 }
 
 publishing {
